@@ -6,12 +6,12 @@ export default function BusDetailsClient({ busDetails }) {
     const { id, name, arrival, departure, availability, price } = busDetails;
     console.log(name)
 
-    const totalSeats = 50; // Total seats on the bus
+    const totalSeats = 48; // Total seats on the bus
     const [selectedSeats, setSelectedSeats] = useState([]);
 
     // Generate seat structure with availability
     const seats = Array.from({ length: totalSeats }, (_, index) => ({
-        id: index + 1,
+        id: index +1,
         status: index < availability ? "available" : "occupied", // Mark seats as available or occupied
     }));
 
@@ -51,34 +51,35 @@ export default function BusDetailsClient({ busDetails }) {
             </div>
 
             <h2 className="text-xl font-bold mb-4">Select Your Seats</h2>
-
-            <div className="grid grid-cols-6 gap-2">
-                {seats.map((seat) => (
-                    <div
-                        key={seat.id}
-                        className={`w-12 h-12 flex items-center justify-center text-white font-bold cursor-pointer rounded
-                            ${
-                                seat.status === "occupied"
-                                    ? "bg-slate-500 cursor-not-allowed"
-                                    : selectedSeats.includes(seat.id)
-                                    ? "bg-red-400"
-                                    : "bg-green-500"
-                            }`}
-                        onClick={() => handleSeatClick(seat.id)}
-                    >
-                        {seat.id}
-                    </div>
-                ))}
-            </div>
+            <div className="max-w-screen-md ">
+                <div className="grid grid-cols-12 gap-3">
+                    {seats.map((seat) => (
+                        <div
+                            key={seat.id}
+                            className={`w-12 h-12 flex items-center justify-center text-black font-bold cursor-pointer rounded
+                                ${
+                                    seat.status === "occupied"
+                                        ? "bg-slate-500 cursor-not-allowed"
+                                        : selectedSeats.includes(seat.id)
+                                        ? "bg-green-500"
+                                        : "bg-white border-2 border-lime-600"
+                                }`}
+                            onClick={() => handleSeatClick(seat.id)}
+                        >
+                            {seat.id}
+                        </div>
+                    ))}
+                </div>
+           
 
             <div className="mt-4">
                 <h2 className="text-lg font-semibold">Legend:</h2>
                 <div className="flex items-center space-x-4 mt-2">
-                    <div className="w-6 h-6 bg-green-500 rounded"></div>
+                    <div className="w-6 h-6 bg-white rounded border-2 border-lime-600"></div>
                     <span>Available</span>
                     <div className="w-6 h-6 bg-slate-500 rounded"></div>
                     <span>Occupied</span>
-                    <div className="w-6 h-6 bg-red-500 rounded"></div>
+                    <div className="w-6 h-6 bg-green-500 rounded"></div>
                     <span>Selected</span>
                 </div>
             </div>
@@ -89,6 +90,8 @@ export default function BusDetailsClient({ busDetails }) {
                     <p>{selectedSeats.join(", ")}</p>
                 </div>
             )}
+            </div>
         </div>
+
     );
 }
