@@ -9,6 +9,8 @@ export default function BusDetailsClient({ busDetails }) {
     const totalSeats = 48; // Total seats on the bus
     const [selectedSeats, setSelectedSeats] = useState([]);
 
+    // console.log(selectedSeats + " @#")
+
     // Generate seat structure with availability
     const seats = Array.from({ length: totalSeats }, (_, index) => ({
         id: index +1,
