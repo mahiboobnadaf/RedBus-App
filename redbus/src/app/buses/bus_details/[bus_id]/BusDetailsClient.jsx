@@ -4,18 +4,22 @@ import { useState } from "react";
 
 export default function BusDetailsClient({ busDetails }) {
     const { id, name, arrival, departure, availability, price } = busDetails;
-    console.log(name)
+    // console.log(name)
 
     const totalSeats = 48; // Total seats on the bus
+    
     const [selectedSeats, setSelectedSeats] = useState([]);
 
     // console.log(selectedSeats + " @#")
 
     // Generate seat structure with availability
-    const seats = Array.from({ length: totalSeats }, (_, index) => ({
+    const [seats,setSeats] = useState(
+        Array.from({ length: totalSeats }, (_, index) => ({
         id: index +1,
         status: index < availability ? "available" : "occupied", // Mark seats as available or occupied
-    }));
+    }))
+    );
+    // console.log(seats)
 
     const handleSeatClick = (seatId) => {
         const seat = seats.find((s) => s.id === seatId);
@@ -26,6 +30,17 @@ export default function BusDetailsClient({ busDetails }) {
                 setSelectedSeats([...selectedSeats, seatId]);
             }
         }
+    };
+
+    const handleSeatBook = (bookSeats) => {
+        setSeats((prev) =>
+            prev.map((seat) =>{
+                // console.log(seat);
+                
+                return bookSeats.includes(seat.id) ? { ...seat, status: "occupied" } : seat
+            })
+        );
+        setSelectedSeats([]); // Clear selected seats after booking
     };
 
     return (
@@ -53,8 +68,9 @@ export default function BusDetailsClient({ busDetails }) {
             </div>
 
             <h2 className="text-xl font-bold mb-4">Select Your Seats</h2>
-            <div className="max-w-screen-md ">
-                <div className="grid grid-cols-12 gap-3">
+
+            <div className="max-w-screen gap-5 flex">
+                <div className="grid grid-cols-12 gap-2">
                     {seats.map((seat) => (
                         <div
                             key={seat.id}
@@ -72,28 +88,37 @@ export default function BusDetailsClient({ busDetails }) {
                         </div>
                     ))}
                 </div>
+
+                <div className="mt-4 pl-10">
+                    <h2 className="text-lg font-semibold">Legend:</h2>
+                    <div className="flex items-center space-x-4 mt-2">
+                        <div className="w-6 h-6 bg-white  mr-30rounded border-2 border-lime-600"></div>
+                        <span>Available</span>
+                        <div className="w-6 h-6 bg-slate-500 rounded"></div>
+                        <span>Occupied</span>
+                        <div className="w-6 h-6 bg-green-500 rounded"></div>
+                        <span>Selected</span>
+                    </div>
+
+                    <div> 
+                        {selectedSeats.length > 0 && (
+                            <div className="mt-6">
+                                <h3 className="text-lg font-bold">Selected Seats:</h3>
+                                <p>{selectedSeats.sort((a,b)=>a-b).join(", ")}</p>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </div>        
+
            
-
-            <div className="mt-4">
-                <h2 className="text-lg font-semibold">Legend:</h2>
-                <div className="flex items-center space-x-4 mt-2">
-                    <div className="w-6 h-6 bg-white rounded border-2 border-lime-600"></div>
-                    <span>Available</span>
-                    <div className="w-6 h-6 bg-slate-500 rounded"></div>
-                    <span>Occupied</span>
-                    <div className="w-6 h-6 bg-green-500 rounded"></div>
-                    <span>Selected</span>
-                </div>
-            </div>
-
-            {selectedSeats.length > 0 && (
-                <div className="mt-6">
-                    <h3 className="text-lg font-bold">Selected Seats:</h3>
-                    <p>{selectedSeats.sort((a,b)=>a-b).join(", ")}</p>
-                </div>
-            )}
+            <div className="mt-10 flex justify-center">
+                <button type="submit" className="bg-red-600 text-white font-bold px-4 py-2 rounded-xl hover:bg-red-800 "
+                onClick={()=>handleSeatBook(selectedSeats)} >
+                    Book Seats </button>
             </div>
         </div>
+       
 
     );
 }
