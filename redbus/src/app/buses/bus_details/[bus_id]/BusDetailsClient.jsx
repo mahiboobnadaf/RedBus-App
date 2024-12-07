@@ -10,6 +10,7 @@ export default function BusDetailsClient({ busDetails }) {
     
     const [selectedSeats, setSelectedSeats] = useState([]);
 
+    const [myBooking,setMyBooking] = useState([])
     // console.log(selectedSeats + " @#")
 
     // Generate seat structure with availability
@@ -33,14 +34,17 @@ export default function BusDetailsClient({ busDetails }) {
     };
 
     const handleSeatBook = (bookSeats) => {
-        setSeats((prev) =>
-            prev.map((seat) =>{
-                // console.log(seat);
+        console.log(bookSeats)
+        // setSeats((prev) =>
+        //     prev.map((seat) =>{
+        //         // console.log(seat);
                 
-                return bookSeats.includes(seat.id) ? { ...seat, status: "occupied" } : seat
-            })
-        );
-        setSelectedSeats([]); // Clear selected seats after booking
+        //         return bookSeats.includes(seat.id) ? { ...seat, status: "occupied" } : seat
+        //     })
+        // );
+        // setMyBooking(selectedSeats);
+        // // console.log(myBooking)
+        // setSelectedSeats([]); // Clearing after statas chang
     };
 
     return (
@@ -108,6 +112,16 @@ export default function BusDetailsClient({ busDetails }) {
                             </div>
                         )}
                     </div>
+
+                    <div>
+                        {myBooking.length > 0 && (
+                            <div className="mt-6">
+                                <h3 className="text-lg font-bold text-red-700 ">  Booking Sucessfull:</h3>
+                                <p className="font-bold">{myBooking.sort((a,b)=> a-b).join(", ")}</p>
+                            </div>
+                        )}
+                    </div>
+
                 </div>
             </div>        
 
