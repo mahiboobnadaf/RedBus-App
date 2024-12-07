@@ -89,7 +89,7 @@ export default function BusDetailsClient({ busDetails }) {
             {selectedSeats.length > 0 && (
                 <div className="mt-6">
                     <h3 className="text-lg font-bold">Selected Seats:</h3>
-                    <p>{selectedSeats.join(", ")}</p>
+                    <p>{selectedSeats.sort((a,b)=>a-b).join(", ")}</p>
                 </div>
             )}
             </div>
