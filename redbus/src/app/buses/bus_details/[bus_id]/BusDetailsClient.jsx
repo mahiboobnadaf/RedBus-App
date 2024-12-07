@@ -116,7 +116,7 @@ export default function BusDetailsClient({ busDetails }) {
                     <div>
                         {myBooking.length > 0 && (
                             <div className="mt-6">
-                                <h3 className="text-lg font-bold text-red-700 ">  Booking Sucessfull:</h3>
+                                <h3 className="text-lg font-bold text-red-700 ">  Booking Succesful:</h3>
                                 <p className="font-bold">{myBooking.sort((a,b)=> a-b).join(", ")}</p>
                             </div>
                         )}
