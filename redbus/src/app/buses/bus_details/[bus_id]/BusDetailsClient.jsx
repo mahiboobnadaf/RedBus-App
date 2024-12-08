@@ -35,16 +35,16 @@ export default function BusDetailsClient({ busDetails }) {
 
     const handleSeatBook = (bookSeats) => {
         console.log(bookSeats)
-        // setSeats((prev) =>
-        //     prev.map((seat) =>{
-        //         // console.log(seat);
+        setSeats((prev) =>
+            prev.map((seat) =>{
+                // console.log(seat);
                 
-        //         return bookSeats.includes(seat.id) ? { ...seat, status: "occupied" } : seat
-        //     })
-        // );
-        // setMyBooking(selectedSeats);
-        // // console.log(myBooking)
-        // setSelectedSeats([]); // Clearing after statas chang
+                return bookSeats.includes(seat.id) ? { ...seat, status: "occupied" } : seat
+            })
+        );
+        setMyBooking(selectedSeats);
+        // console.log(myBooking)
+        setSelectedSeats([]); // Clearing after statas chang
     };
 
     return (
