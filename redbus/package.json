@@ -9,17 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "apexcharts": "^4.1.0",
-    "next": "15.0.3",
-    "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106",
-    "react-seat-picker": "^1.5.3",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^6.1.10",
+    "next": "^13.3.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "react-tooltip": "^5.28.0"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.20",
     "eslint": "^8",
     "eslint-config-next": "15.0.3",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1"
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.16"
   }
 }
