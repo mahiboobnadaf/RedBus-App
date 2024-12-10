@@ -69,7 +69,7 @@ function Header() {
                             aria-haspopup="true"
                             aria-expanded={open ? "true" : undefined}
                             onClick={handleClick}
-                            className="font-bold bg-white font-sans text-rose-800 gap-1"
+                            className="font-bold bg-white sans text-rose-800 gap-1"
                         >
                             <img
                                 src="/static/profile_img.png"
@@ -91,7 +91,7 @@ function Header() {
                                
                                 ".MuiMenuItem-root":{
                                     color:"#9f1239",
-                                    fontWeight:500,
+                                    fontWeight:550,
                                     fontFamily:"sans"
                                 }
                             }}
