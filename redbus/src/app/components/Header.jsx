@@ -91,7 +91,7 @@ function Header() {
                                
                                 ".MuiMenuItem-root":{
                                     color:"#9f1239",
-                                    fontWeight:550,
+                                    fontWeight:500,
                                     fontFamily:"sans"
                                 }
                             }}
