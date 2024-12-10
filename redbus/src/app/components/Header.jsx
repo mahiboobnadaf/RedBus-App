@@ -35,7 +35,7 @@ function Header() {
 
                 {/* Centered "Bus Ticket Booking" Section */}
                 <div className="text-3xl text-center flex-grow flex justify-center items-center">
-                    <Link href="/">Bus Ticket Booking</Link>
+                    Bus Ticket Booking
                 </div>
 
                 {/* Right Section */}
@@ -86,19 +86,29 @@ function Header() {
                             MenuListProps={{
                                 "aria-labelledby": "basic-button",
                             }}
+
+                            sx={{
+                               
+                                ".MuiMenuItem-root":{
+                                    color:"#9f1239",
+                                    fontWeight:550,
+                                    fontFamily:"sans"
+                                }
+                            }}
+                            
                         >
-                            <MenuItem onClick={handleClose}>
-                                <Link href="/my-bookings">My Bookings</Link>
-                            </MenuItem>
-                            <MenuItem onClick={handleClose}>
-                                <Link href="/my-profile">My Profile</Link>
-                            </MenuItem>
-                            <MenuItem onClick={handleClose}>
-                                <Link href="/my-wallet">My Wallet</Link>
-                            </MenuItem>
-                            <MenuItem onClick={handleClose}>
-                                <Link href="/log-out">Logout</Link>
-                            </MenuItem>
+                                <MenuItem onClick={handleClose} >
+                                    <Link href="/my-bookings">My Bookings</Link>
+                                </MenuItem>
+                                <MenuItem onClick={handleClose}>
+                                    <Link href="/my-profile">My Profile</Link>
+                                </MenuItem>
+                                <MenuItem onClick={handleClose}>
+                                    <Link href="/my-wallet">My Wallet</Link>
+                                </MenuItem>
+                                <MenuItem onClick={handleClose}>
+                                    <Link href="/log-out">Logout</Link>
+                                </MenuItem>
                         </Menu>
                     </div>
                 </div>
