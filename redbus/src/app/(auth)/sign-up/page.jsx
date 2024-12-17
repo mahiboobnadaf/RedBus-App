@@ -57,7 +57,7 @@ export default function SignUp(){
                                 type="text"
                                 id="name"
                                 name="name"
-                                className="border w-full p-2 rounded-xl"
+                                className="border w-full p-2 rounded-xl text-black"
                                 placeholder="Enter Full Name"
                                 value={user}
                                 onChange={(e) => setUser(e.target.value)}
@@ -69,10 +69,11 @@ export default function SignUp(){
                                 Mobile No.:
                             </label>
                             <input
-                                type="number"
+                                type="text"
+                                pattern="\d{10,10}"
                                 id="mobile"
                                 name="mobile Number"
-                                className="border w-full p-2 rounded-xl"
+                                className="border w-full p-2 rounded-xl text-black"
                                 placeholder="Enter Mobile no."
                                 value={mobile}
                                 onChange={(e) => setMobile(e.target.value)}
@@ -87,7 +88,7 @@ export default function SignUp(){
                                 type="text"
                                 id="address"
                                 name="address"
-                                className="border w-full p-2 rounded-xl"
+                                className="border w-full p-2 rounded-xl text-black"
                                 placeholder="Enter Address"
                                 value={address}
                                 onChange={(e) => setAddress(e.target.value)}
@@ -104,7 +105,7 @@ export default function SignUp(){
                         </div>
                     </form>
                     <div className="p-2 flex w-full justify-center items-center h-14">
-                        <p className="text-blue-900 pr-3">Already have an account ?</p>
+                        <p className="text-blue-900 pr-3 font-bold">Already have an account ?</p>
                         <Link
                             href="/login"
                             className="bg-red-600 text-white font-bold px-3 py-1 rounded-xl hover:bg-red-800"
