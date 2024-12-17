@@ -9,6 +9,7 @@ export default function SignUp(){
     let [mobile,setMobile] = useState("")
     let [address,setAddress] = useState("")
     let [error,setError] = useState("")
+    let [success,setSuccess] = useState("")
 
     const verify=()=>{
         user= user.trim()
@@ -21,6 +22,7 @@ export default function SignUp(){
         }
 
         setError("");
+        setSuccess("")
         // console.log(user,mobile,address)
         return true
     }
@@ -34,6 +36,8 @@ export default function SignUp(){
             setUser("");
             setMobile("");
             setAddress("");
+            // console.log("Successfully added user")
+            setSuccess("Added new user, Please Login")
         }
     }    
 
@@ -103,6 +107,7 @@ export default function SignUp(){
                                 Sign Up
                             </button>
                         </div>
+                        <p className="text-center text-green-500 font-bold font-serif">{success}</p>
                     </form>
                     <div className="p-2 flex w-full justify-center items-center h-14">
                         <p className="text-blue-900 pr-3 font-bold">Already have an account ?</p>
