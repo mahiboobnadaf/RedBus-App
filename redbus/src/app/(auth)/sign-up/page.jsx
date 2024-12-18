@@ -3,23 +3,24 @@
 import { useState } from "react"
 import { users } from "../users"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 
-export default function SignUp(){
-    let [user,setUser] = useState("")
-    let [mobile,setMobile] = useState("")
-    let [address,setAddress] = useState("")
-    let [error,setError] = useState("")
-    let [success,setSuccess] = useState("")
+export default function SignUp() {
+    let [user, setUser] = useState("");
+    let [mobile, setMobile] = useState("");
+    let [address, setAddress] = useState("");
+    let [password, setPassword] = useState("");
+    let [error, setError] = useState("");
+    let [success, setSuccess] = useState("");
+
+    const router = useRouter();
 
     const verify = () => {
-        if (!mobile || !user || !address) {
-            setError("Please provide all required fields.");
-            return false;
-        }
         let existingUser = users.find((item) => item.mobile === Number(mobile));
+        
         if (existingUser) {
             setError("User Already Exists. Please Login.");
-            setSuccess("")
+            setSuccess("");
             return false;
         }
         user = user.trim();
@@ -28,24 +29,33 @@ export default function SignUp(){
             setError("Mobile number must be 10 digits.");
             return false;
         }
+        if (password.length < 6) {
+            setError("Password must be at least 6 characters long.");
+            return false;
+        }
         setError("");
         return true;
     };
-    
-    
 
-    const handleSubmit=(e)=>{
+    const handleSubmit = (e) => {
         e.preventDefault();
-        if(verify()){
-            users.push({name:user,mobile:Number(mobile),address:address})
-            console.log(users)
+        if (verify()) {
+            users.push({
+                name: user,
+                mobile: Number(mobile),
+                address: address,
+                password: password,
+            });
+            console.log(users);
             setUser("");
             setMobile("");
             setAddress("");
-            console.log("Successfully added user")
-            setSuccess("Added new user, Please Login")
+            setPassword("");
+            console.log("Successfully added user");
+            setSuccess("Added new user. Please Login.");
+            router.push("/login");
         }
-    }    
+    };
 
     return (
         <>
@@ -105,6 +115,21 @@ export default function SignUp(){
                                 required
                             />
                         </div>
+                        <div className="p-2">
+                            <label htmlFor="password" className="block mb-1 font-extrabold">
+                                Password:
+                            </label>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                className="border w-full p-2 rounded-xl text-black"
+                                placeholder="Enter Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                        </div>
                         <div className="p-2 flex w-full justify-center">
                             <button
                                 type="submit"
@@ -126,7 +151,6 @@ export default function SignUp(){
                     </div>
                 </div>
             </div>
-
         </>
-    )
+    );
 }
