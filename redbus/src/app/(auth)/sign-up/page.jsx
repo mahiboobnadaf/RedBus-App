@@ -11,32 +11,38 @@ export default function SignUp(){
     let [error,setError] = useState("")
     let [success,setSuccess] = useState("")
 
-    const verify=()=>{
-        user= user.trim()
-        address = address.trim()
-        // console.log(user,address)
-        
+    const verify = () => {
+        if (!mobile || !user || !address) {
+            setError("Please provide all required fields.");
+            return false;
+        }
+        let existingUser = users.find((item) => item.mobile === Number(mobile));
+        if (existingUser) {
+            setError("User Already Exists. Please Login.");
+            setSuccess("")
+            return false;
+        }
+        user = user.trim();
+        address = address.trim();
         if (!/^\d{10}$/.test(mobile)) {
             setError("Mobile number must be 10 digits.");
             return false;
         }
-
         setError("");
-        setSuccess("")
-        // console.log(user,mobile,address)
-        return true
-    }
-    const handleSubmit=(e)=>{
-        e.preventDefault()
-        // console.log(user,mobile,address)
+        return true;
+    };
+    
+    
 
+    const handleSubmit=(e)=>{
+        e.preventDefault();
         if(verify()){
             users.push({name:user,mobile:Number(mobile),address:address})
             console.log(users)
             setUser("");
             setMobile("");
             setAddress("");
-            // console.log("Successfully added user")
+            console.log("Successfully added user")
             setSuccess("Added new user, Please Login")
         }
     }    
