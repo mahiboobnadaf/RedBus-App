@@ -17,7 +17,7 @@ export default function SignUp() {
 
     const verify = () => {
         let existingUser = users.find((item) => item.mobile === Number(mobile));
-        
+
         if (existingUser) {
             setError("User Already Exists. Please Login.");
             setSuccess("");
@@ -117,14 +117,14 @@ export default function SignUp() {
                         </div>
                         <div className="p-2">
                             <label htmlFor="password" className="block mb-1 font-extrabold">
-                                Password:
+                                Set Password:
                             </label>
                             <input
                                 type="password"
                                 id="password"
                                 name="password"
                                 className="border w-full p-2 rounded-xl text-black"
-                                placeholder="Enter Password"
+                                placeholder="Set Password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 required

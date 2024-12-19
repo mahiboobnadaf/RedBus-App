@@ -107,7 +107,7 @@ function Header() {
                                     <Link href="/my-wallet">My Wallet</Link>
                                 </MenuItem>
                                 <MenuItem onClick={handleClose}>
-                                    <Link href="/log-out">Logout</Link>
+                                    <Link href="/login" replace>Logout</Link>
                                 </MenuItem>
                         </Menu>
                     </div>
