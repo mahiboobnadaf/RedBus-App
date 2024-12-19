@@ -41,7 +41,7 @@ export default function SignUp() {
         e.preventDefault();
         if (verify()) {
             users.push({
-                id:users[0].id+1,
+                id:users.length+1,
                 name: user,
                 mobile: Number(mobile),
                 address: address,
@@ -52,7 +52,7 @@ export default function SignUp() {
             setMobile("");
             setAddress("");
             setPassword("");
-            console.log(users[1].id)
+            console.log(users.forEach((item)=> console.log(item.id) ))
             console.log("Successfully added user");
             setSuccess("Added new user. Please Login.");
             router.push("/login");
