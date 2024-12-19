@@ -1,11 +1,11 @@
 "use client";
-import { useState } from "react";
-import Link from "next/link";
 
+import Link from "next/link";
 import * as React from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+
 
 function Header() {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -22,7 +22,7 @@ function Header() {
     return (
         <div>
             <header className="overflow-x-hidden flex p-5 border-b-4 font-bold text-rose-800 relative font-sans">
-                {/* Left Section */}
+
                 <div className="flex items-center pl-5">
                     <Link href="/">
                         <img
@@ -33,12 +33,10 @@ function Header() {
                     </Link>
                 </div>
 
-                {/* Centered "Bus Ticket Booking" Section */}
                 <div className="text-3xl text-center flex-grow flex justify-center items-center">
                     Bus Ticket Booking
                 </div>
 
-                {/* Right Section */}
                 <div className="flex gap-4 ml-auto relative items-center font-bold text-rose-800 font-sans">
                     <div>
                         <Link href="/help" className="flex items-center gap-1 cursor-pointer">
