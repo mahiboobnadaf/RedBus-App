@@ -56,7 +56,7 @@ export default function SignUp() {
             console.log("Successfully added user");
             setSuccess("Added new user. Please Login.");
 
-            window.localStorage.setItem('id',`${users.length}`);
+            // window.localStorage.setItem('id',`${users.length}`);
             // console.log(window.localStorage.getItem('id') + "^^")
 
             router.push("/login");
