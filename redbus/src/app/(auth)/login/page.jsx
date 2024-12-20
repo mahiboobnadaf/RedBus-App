@@ -12,7 +12,7 @@ export default function Login() {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        
+
         const existingUser = users.find(
             (user) => user.mobile === Number(mobile) && user.password === password
         );
@@ -24,7 +24,11 @@ export default function Login() {
 
 
         setError("");
+        let loginId = users.find((item)=> item.mobile == mobile)
+        console.log(loginId.id)
+        window.localStorage.setItem('id',`${loginId.id}`)
         console.log("Login successful!");
+        console.log(window.localStorage.getItem('id') + "^^")
         router.push("/"); 
     };
 

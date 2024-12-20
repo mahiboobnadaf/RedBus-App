@@ -19,6 +19,10 @@ function Header() {
         setAnchorEl(null);
     };
 
+    const handleLogOut = () =>{
+        window.localStorage.clear();
+        console.log(window.localStorage.getItem('id'))
+    }
     return (
         <div>
             <header className="overflow-x-hidden flex p-5 border-b-4 font-bold text-rose-800 relative font-sans">
@@ -105,7 +109,7 @@ function Header() {
                                     <Link href="/my-wallet">My Wallet</Link>
                                 </MenuItem>
                                 <MenuItem onClick={handleClose}>
-                                    <Link href="/login" replace>Logout</Link>
+                                    <Link href="/login" replace onClick={handleLogOut}>Logout</Link>
                                 </MenuItem>
                         </Menu>
                     </div>
