@@ -1,19 +1,6 @@
-"use client"
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 import Location_input from "./Location_input";
 
 function Mainbody(){
-   
-    const router = useRouter();
-
-    useEffect(() => {
-        const userId = window.localStorage.getItem('id');
-        if (!userId) {
-            router.push('/login');
-        }
-    }, [router]);
-    
     return (
         <div className="w-screen overflow-x-hidden" style={{
             backgroundImage: "url('/static/bg_image5.jpg')",
