@@ -27,6 +27,7 @@ export default function Login() {
         let loginId = users.find((item)=> item.mobile == mobile)
         console.log(loginId.id)
         window.localStorage.setItem('id',`${loginId.id}`)
+        window.localStorage.setItem('name',`${loginId.name}`)
         console.log("Login successful!");
         console.log(window.localStorage.getItem('id') + "^^")
         router.push("/"); 

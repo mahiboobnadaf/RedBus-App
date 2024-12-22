@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import MyBooking from "@/app/(header)/(account)/my-bookings/page";
 
 export default function BusDetailsClient({ busDetails }) {
     const { id, name, arrival, departure, availability, price } = busDetails;
@@ -34,7 +35,7 @@ export default function BusDetailsClient({ busDetails }) {
     };
 
     const handleSeatBook = (bookSeats) => {
-        console.log(bookSeats)
+        // console.log(bookSeats)
         setSeats((prev) =>
             prev.map((seat) =>{
                 // console.log(seat);
@@ -43,7 +44,8 @@ export default function BusDetailsClient({ busDetails }) {
             })
         );
         setMyBooking(selectedSeats);
-        // console.log(myBooking)
+        // console.log(myBooking + " ***")
+        MyBooking(name,arrival,departure,bookSeats)
         setSelectedSeats([]); // Clearing after statas chang
     };
 
