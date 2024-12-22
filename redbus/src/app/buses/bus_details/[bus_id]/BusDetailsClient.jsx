@@ -2,17 +2,19 @@
 
 import { useState } from "react";
 import MyBooking from "@/app/(header)/(account)/my-bookings/page";
+import { bookedBusData } from "../../bookedBusData";
 
-export default function BusDetailsClient({ busDetails }) {
+export default function BusDetailsClient({busDetails}) {
+    // console.log(from,to,date +" *&")
     const { id, name, arrival, departure, availability, price } = busDetails;
-    // console.log(name)
 
     const totalSeats = 48; // Total seats on the bus
-    
     const [selectedSeats, setSelectedSeats] = useState([]);
-
     const [myBooking,setMyBooking] = useState([])
-    // console.log(selectedSeats + " @#")
+
+ 
+    // console.log(from,to,date + " .&*. ")
+ 
 
     // Generate seat structure with availability
     const [seats,setSeats] = useState(
@@ -21,7 +23,6 @@ export default function BusDetailsClient({ busDetails }) {
         status: index < availability ? "available" : "occupied", // Mark seats as available or occupied
     }))
     );
-    // console.log(seats)
 
     const handleSeatClick = (seatId) => {
         const seat = seats.find((s) => s.id === seatId);
@@ -35,10 +36,7 @@ export default function BusDetailsClient({ busDetails }) {
     };
 
     const handleSeatBook = (bookSeats) => {
-
-        MyBooking(name,arrival,departure,bookSeats)
-        // console.log(name,arrival,departure,bookSeats + "*&")
-
+        addBookingDetails(bookSeats);
         setSeats((prev) =>
             prev.map((seat) =>{
                 // console.log(seat);
@@ -47,10 +45,20 @@ export default function BusDetailsClient({ busDetails }) {
             })
         );
         setMyBooking(selectedSeats);
-        // console.log(myBooking + " ***")
-        let params = []
         setSelectedSeats([]); // Clearing after statas chang
     };
+
+    const addBookingDetails = (bookSeats) =>{
+        const newBooking = {
+            busName : name,
+            departureTime : departure,
+            arrivalTime : arrival,
+            bookedSeats : bookSeats.sort((a,b)=>a-b).join(", "),
+        }
+
+        bookedBusData.push(newBooking);
+        console.log("booking details added : ",bookedBusData)
+    }
 
     return (
         <div className="p-6">

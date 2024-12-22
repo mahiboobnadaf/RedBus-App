@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { busData } from "./busData";
-import BusDetails from "./bus_details/[bus_id]/page";
+import BusDetailsClient from "./bus_details/[bus_id]/BusDetailsClient";
 import { useRouter } from "next/navigation";
 
 
@@ -13,13 +13,13 @@ export default function BusesPage() {
     const date = searchParams.get("date");
 
     const router = useRouter();
-    // Search(from, to, date);
+
     const handleClick=(busId)=>{
-        console.log(busId)
         router.push(`/buses/bus_details/${busId}`)
     } 
 
     return (
+    <>
         <div className="p-6">
             <h1 className="text-3xl font-bold mb-6">
                 Buses from {from} to {to} on {date}
@@ -42,5 +42,12 @@ export default function BusesPage() {
                 )}
             </div>
         </div>
+
+        <BusDetails
+            from={from}
+            to={to}
+            date={date}
+        />
+    </>
     );
 }

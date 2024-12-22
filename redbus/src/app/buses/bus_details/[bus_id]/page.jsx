@@ -2,7 +2,8 @@
 import { busData } from "../../busData";
 import BusDetailsClient from "./BusDetailsClient";
 
-export default async function BusDetails({ params }) {
+export default async function BusDetails({ params,from,to,date }) {
+    console.log(from,to,date)
     const { bus_id } = await params;
 
     const busDetails = busData.find((bus) => bus.id === parseInt(bus_id));
