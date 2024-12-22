@@ -1,8 +1,7 @@
 "use client"
-import { useState } from "react";
+
 import { useSearchParams } from "next/navigation";
 import { busData } from "./busData";
-import BusDetailsClient from "./bus_details/[bus_id]/BusDetailsClient";
 import { useRouter } from "next/navigation";
 
 
@@ -14,9 +13,11 @@ export default function BusesPage() {
 
     const router = useRouter();
 
-    const handleClick=(busId)=>{
-        router.push(`/buses/bus_details/${busId}`)
-    } 
+    const handleClick = (busId) => {
+        const queryString = new URLSearchParams({ from, to, date }).toString();
+        router.push(`/buses/bus_details/${busId}?${queryString}`);
+    };
+    
 
     return (
     <>
@@ -43,11 +44,11 @@ export default function BusesPage() {
             </div>
         </div>
 
-        <BusDetails
+        {/* <BusDetails
             from={from}
             to={to}
             date={date}
-        />
+        /> */}
     </>
     );
 }

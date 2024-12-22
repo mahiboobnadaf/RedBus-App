@@ -4,8 +4,8 @@ import { useState } from "react";
 import MyBooking from "@/app/(header)/(account)/my-bookings/page";
 import { bookedBusData } from "../../bookedBusData";
 
-export default function BusDetailsClient({busDetails}) {
-    // console.log(from,to,date +" *&")
+export default function BusDetailsClient({busDetails,from,to,date}) {
+    // console.log(from,to,date +" from CLient")
     const { id, name, arrival, departure, availability, price } = busDetails;
 
     const totalSeats = 48; // Total seats on the bus
@@ -54,6 +54,9 @@ export default function BusDetailsClient({busDetails}) {
             departureTime : departure,
             arrivalTime : arrival,
             bookedSeats : bookSeats.sort((a,b)=>a-b).join(", "),
+            from:from,
+            to:to,
+            departureDate:date
         }
 
         bookedBusData.push(newBooking);
