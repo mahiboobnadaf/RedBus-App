@@ -60,7 +60,7 @@ export default function BusDetailsClient({busDetails,from,to,date}) {
         }
 
         bookedBusData.push(newBooking);
-        console.log("booking details added : ",bookedBusData)
+        // console.log("booking details added : ",bookedBusData)
     }
 
     return (

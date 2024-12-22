@@ -1,22 +1,33 @@
 "use client"
-import { useState } from "react";
+import { bookedBusData } from "@/app/buses/bookedBusData";
+
 export default function MyBooking(){
-    // console.log(name,arrival,departure,bookSeats + "* (");
-    
-  
 
 return <>
         <div className=" bg-slate-400 flex justify-center items-center max-h-screen">
             <div className="w-96 h-96 bg-slate-800 p-5">
                 <div className="text-white">
                     <p className="flex justify-center font-bold">My Tickets</p>
-                    <p className="pt-3 font-semibold">Bus Details:</p>
-                      <div>
-                        <p>Bus Name : {busName}</p>
-                        <p>Departure Time : {}</p>
-                        <p>Arrival Time : {}</p>
-                        <p>Departure Time : {}</p>
-
+                    <div className="pt-3">
+                        {bookedBusData.length > 0 ? (
+                            bookedBusData.map((item,index)=>(
+                                <div key={index} className="ml-4">
+                                    <p className="pt-3 font-semibold">Bus Details: {index+1}</p> 
+                                    <div className="pl-4 pt-2">               
+                                        <p>Bus Name : {item.busName}</p>
+                                        <p> From {item.from} to --- {item.to} </p>
+                                        <p>Departure Date : {item.departureDate}</p>
+                                        <p>Seat No. : {item.bookedSeats}</p>
+                                        <p>Departure Time : {item.departureTime}</p>
+                                        <p>Arrival Time : {item.arrivalTime}</p>
+                                    </div>
+                                </div>
+                            ))
+                        )
+                        : (
+                            <p> No Bookings Found </p>
+                        )    
+                        }
                     </div>
                 </div>
 
