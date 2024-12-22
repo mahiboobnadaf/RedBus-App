@@ -35,7 +35,10 @@ export default function BusDetailsClient({ busDetails }) {
     };
 
     const handleSeatBook = (bookSeats) => {
-        // console.log(bookSeats)
+
+        MyBooking(name,arrival,departure,bookSeats)
+        // console.log(name,arrival,departure,bookSeats + "*&")
+
         setSeats((prev) =>
             prev.map((seat) =>{
                 // console.log(seat);
@@ -45,7 +48,7 @@ export default function BusDetailsClient({ busDetails }) {
         );
         setMyBooking(selectedSeats);
         // console.log(myBooking + " ***")
-        MyBooking(name,arrival,departure,bookSeats)
+        let params = []
         setSelectedSeats([]); // Clearing after statas chang
     };
 
