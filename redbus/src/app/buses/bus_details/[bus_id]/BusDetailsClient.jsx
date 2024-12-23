@@ -3,26 +3,34 @@
 import { useState } from "react";
 import MyBooking from "@/app/(header)/(account)/my-bookings/page";
 import { bookedBusData } from "../../bookedBusData";
+import { useEffect } from "react";
 
 export default function BusDetailsClient({busDetails,from,to,date}) {
-    // console.log(from,to,date +" from CLient")
     const { id, name, arrival, departure, availability, price } = busDetails;
-
     const totalSeats = 48; // Total seats on the bus
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [myBooking,setMyBooking] = useState([])
 
- 
-    // console.log(from,to,date + " .&*. ")
- 
+    
+    const [seats, setSeats] = useState(() => {
+        let storedSeats = localStorage.getItem(`bus_${id}_seats`);
+        if (storedSeats) {
+          return JSON.parse(storedSeats);
+        }
+    
+        // Generate seat structure with availability
+        return Array.from({ length: totalSeats }, (_, index) => ({
+          id: index + 1,
+          status: index < availability ? "available" : "occupied", 
+        }));
 
-    // Generate seat structure with availability
-    const [seats,setSeats] = useState(
-        Array.from({ length: totalSeats }, (_, index) => ({
-        id: index +1,
-        status: index < availability ? "available" : "occupied", // Mark seats as available or occupied
-    }))
-    );
+      });
+    
+      useEffect(() => {
+        if (seats.length > 0) {
+          localStorage.setItem(`bus_${id}_seats`, JSON.stringify(seats));
+        }
+      }, [seats]);
 
     const handleSeatClick = (seatId) => {
         const seat = seats.find((s) => s.id === seatId);
