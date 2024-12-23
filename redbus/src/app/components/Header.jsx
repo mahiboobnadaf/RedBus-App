@@ -21,7 +21,7 @@ function Header() {
 
     const handleLogOut = () =>{
         window.localStorage.clear();
-        console.log(window.localStorage.getItem('id'))
+        // console.log(window.localStorage.getItem('id'))
     }
     return (
         <div>
