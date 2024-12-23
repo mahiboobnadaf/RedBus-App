@@ -36,7 +36,6 @@ export default function BusDetailsClient({busDetails,from,to,date}) {
     };
 
     const handleSeatBook = (bookSeats) => {
-        addBookingDetails(bookSeats);
         setSeats((prev) =>
             prev.map((seat) =>{
                 // console.log(seat);
@@ -45,6 +44,7 @@ export default function BusDetailsClient({busDetails,from,to,date}) {
             })
         );
         setMyBooking(selectedSeats);
+        addBookingDetails(bookSeats);
         setSelectedSeats([]); // Clearing after statas chang
     };
 

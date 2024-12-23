@@ -6,4 +6,11 @@ export const users = [
         address:"Bagalkot",
         password:"mahiboob@123"
     },
+    {
+        id:2,
+        name:"Mahiboob Nadaf",
+        mobile:8904382490,
+        address:"Bagalkot",
+        password:"mahiboob"
+    },
 ] 
