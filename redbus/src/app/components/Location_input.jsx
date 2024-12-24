@@ -10,6 +10,21 @@ export default function LocationInput() {
     const [date, setDate] = useState("");
     const router = useRouter();
 
+    let today = new Date();
+    let currMonth = (today.getMonth()+1).toString();
+    let currYear = today.getFullYear();
+    let currDate = today.getDate().toString();
+
+    if(currMonth.length<2){
+        currMonth = "0"+currMonth;
+    }
+
+    if(currDate < 2){
+        currDate = "0"+currDate;
+    }
+    
+    let minDate = currYear+"-"+currMonth+"-"+currDate;
+
     const handleSubmit = (e) => {
         e.preventDefault(); // Prevent form from refreshing the page
         router.push(`/buses?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&date=${encodeURIComponent(date)}`);
@@ -64,6 +79,7 @@ export default function LocationInput() {
                         type="date"
                         id="date"
                         name="date"
+                        min={minDate}
                         className="border w-full p-2 rounded-xl"
                         value={date}
                         onChange={(e) => setDate(e.target.value)} // Update state on input change
