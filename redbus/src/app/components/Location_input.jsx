@@ -22,7 +22,7 @@ export default function LocationInput() {
     if(currDate < 2){
         currDate = "0"+currDate;
     }
-    
+
     let minDate = currYear+"-"+currMonth+"-"+currDate;
 
     const handleSubmit = (e) => {
@@ -36,7 +36,6 @@ export default function LocationInput() {
                 onSubmit={handleSubmit} 
                 className="text-red-950 p-10 bg-opacity-40 rounded-2xl flex flex-wrap gap-2"
             >
-                {/* From Input */}
                 <div className="p-2">
                     <label htmlFor="from" className="block mb-1 text-white font-extrabold">
                         From:
@@ -53,7 +52,7 @@ export default function LocationInput() {
                     />
                 </div>
 
-                {/* To Input */}
+         
                 <div className="p-2">
                     <label htmlFor="to" className="block mb-1 text-white font-extrabold">
                         To:
@@ -70,7 +69,7 @@ export default function LocationInput() {
                     />
                 </div>
 
-                {/* Date Input */}
+         
                 <div className="p-2">
                     <label htmlFor="date" className="block mb-1 text-white font-extrabold">
                         Date:
@@ -87,10 +86,10 @@ export default function LocationInput() {
                     />
                 </div>
 
-                {/* Search Button */}
+      
                 <div className="p-2 flex w-full justify-center">
                     <button
-                        type="submit" // Trigger form submission
+                        type="submit" 
                         className="bg-red-600 text-white font-bold px-4 py-2 rounded-xl hover:bg-red-800"
                     >
                         Search
