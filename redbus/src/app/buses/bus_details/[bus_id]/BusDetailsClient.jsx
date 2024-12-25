@@ -4,32 +4,31 @@ import { useState } from "react";
 import { bookedBusData } from "../../bookedBusData";
 import { useEffect } from "react";
 
-export default function BusDetailsClient({busDetails,from,to,date}) {
+export default function BusDetailsClient({ busDetails, from, to, date }) {
     const { id, name, arrival, departure, availability, price } = busDetails;
     const totalSeats = 48; // Total seats on the bus
     const [selectedSeats, setSelectedSeats] = useState([]);
-    const [myBooking,setMyBooking] = useState([])
+    const [myBooking, setMyBooking] = useState([]);
+    const [isBookingSuccessful, setIsBookingSuccessful] = useState(false); 
 
-    
     const [seats, setSeats] = useState(() => {
         let storedSeats = localStorage.getItem(`bus_${id}_seats`);
         if (storedSeats) {
-          return JSON.parse(storedSeats);
+            return JSON.parse(storedSeats);
         }
-    
+
         // Generate seat structure with availability
         return Array.from({ length: totalSeats }, (_, index) => ({
-          id: index + 1,
-          status: index < availability ? "available" : "occupied", 
+            id: index + 1,
+            status: index < availability ? "available" : "occupied",
         }));
+    });
 
-      });
-    
-      useEffect(() => {
+    useEffect(() => {
         if (seats.length > 0) {
-          localStorage.setItem(`bus_${id}_seats`, JSON.stringify(seats));
+            localStorage.setItem(`bus_${id}_seats`, JSON.stringify(seats));
         }
-      }, [seats]);
+    }, [seats]);
 
     const handleSeatClick = (seatId) => {
         const seat = seats.find((s) => s.id === seatId);
@@ -44,31 +43,30 @@ export default function BusDetailsClient({busDetails,from,to,date}) {
 
     const handleSeatBook = (bookSeats) => {
         setSeats((prev) =>
-            prev.map((seat) =>{
-                // console.log(seat);
-                
-                return bookSeats.includes(seat.id) ? { ...seat, status: "occupied" } : seat
+            prev.map((seat) => {
+                return bookSeats.includes(seat.id) ? { ...seat, status: "occupied" } : seat;
             })
         );
         setMyBooking(selectedSeats);
         addBookingDetails(bookSeats);
-        setSelectedSeats([]); // Clearing after statas chang
+        setSelectedSeats([]); // Clearing after status change
+        setIsBookingSuccessful(true); 
+        setTimeout(() => setIsBookingSuccessful(false), 3000); 
     };
 
-    const addBookingDetails = (bookSeats) =>{
+    const addBookingDetails = (bookSeats) => {
         const newBooking = {
-            busName : name,
-            departureTime : departure,
-            arrivalTime : arrival,
-            bookedSeats : bookSeats.sort((a,b)=>a-b).join(", "),
-            from:from,
-            to:to,
-            departureDate:date
-        }
+            busName: name,
+            departureTime: departure,
+            arrivalTime: arrival,
+            bookedSeats: bookSeats.sort((a, b) => a - b).join(", "),
+            from: from,
+            to: to,
+            departureDate: date,
+        };
 
         bookedBusData.push(newBooking);
-        // console.log("booking details added : ",bookedBusData)
-    }
+    };
 
     return (
         <div className="p-6">
@@ -119,7 +117,7 @@ export default function BusDetailsClient({busDetails,from,to,date}) {
                 <div className="mt-4 pl-10">
                     <h2 className="text-lg font-semibold">Legend:</h2>
                     <div className="flex items-center space-x-4 mt-2">
-                        <div className="w-6 h-6 bg-white  mr-30rounded border-2 border-lime-600"></div>
+                        <div className="w-6 h-6 bg-white mr-3 rounded border-2 border-lime-600"></div>
                         <span>Available</span>
                         <div className="w-6 h-6 bg-slate-500 rounded"></div>
                         <span>Occupied</span>
@@ -127,11 +125,11 @@ export default function BusDetailsClient({busDetails,from,to,date}) {
                         <span>Selected</span>
                     </div>
 
-                    <div> 
+                    <div>
                         {selectedSeats.length > 0 && (
                             <div className="mt-6">
                                 <h3 className="text-lg font-bold">Selected Seats:</h3>
-                                <p>{selectedSeats.sort((a,b)=>a-b).join(", ")}</p>
+                                <p>{selectedSeats.sort((a, b) => a - b).join(", ")}</p>
                             </div>
                         )}
                     </div>
@@ -139,23 +137,32 @@ export default function BusDetailsClient({busDetails,from,to,date}) {
                     <div>
                         {myBooking.length > 0 && (
                             <div className="mt-6">
-                                <h3 className="text-lg font-bold text-red-700 ">  Booking Succesful:</h3>
-                                <p className="font-bold">Seat No. : {myBooking.sort((a,b)=> a-b).join(", ")}</p>
+                                <h3 className="text-lg font-bold text-red-700">Booking Successful:</h3>
+                                <p className="font-bold">Seat No. : {myBooking.sort((a, b) => a - b).join(", ")}</p>
                             </div>
                         )}
                     </div>
-
                 </div>
-            </div>        
-
-           
-            <div className="mt-10 flex justify-center">
-                <button type="submit" className="bg-red-600 text-white font-bold px-4 py-2 rounded-xl hover:bg-red-800 "
-                onClick={()=>handleSeatBook(selectedSeats)} >
-                    Book Seats </button>
             </div>
-        </div>
-       
 
+            <div className="mt-10 flex justify-center">
+                <button
+                    type="submit"
+                    className="bg-red-600 text-white font-bold px-4 py-2 rounded-xl hover:bg-red-800"
+                    onClick={() => handleSeatBook(selectedSeats)}
+                >
+                    Book Seats
+                </button>
+            </div>
+
+            {isBookingSuccessful && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                    <div className="bg-white p-6 rounded-lg shadow-lg max-w-md text-center">
+                        <h2 className="text-2xl font-semibold text-green-500">Booking Successful!</h2>
+                        <p className="mt-2 text-lg">Seats have been successfully booked.</p>
+                    </div>
+                </div>
+            )}
+        </div>
     );
 }

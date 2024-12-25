@@ -29,7 +29,7 @@ export default function BusesPage() {
             <div className="grid grid-cols-1 gap-5">
                 {busData.length > 0 ? (
                     busData.map((bus) => (
-                        <div key={bus.id} className="p-4 border rounded-lg shadow" 
+                        <div key={bus.id} className="p-4 border rounded-lg shadow cursor-pointer" 
                                 onClick={()=>handleClick(bus.id)}
                         >
                             <h2 className="text-xl font-semibold">{bus.name}</h2>
