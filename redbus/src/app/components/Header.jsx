@@ -7,7 +7,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
 
-function Header() {
+export default function Header() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
 
@@ -118,5 +118,3 @@ function Header() {
         </div>
     );
 }
-
-export default Header;
