@@ -43,12 +43,6 @@ export default function BusesPage() {
                 )}
             </div>
         </div>
-
-        {/* <BusDetails
-            from={from}
-            to={to}
-            date={date}
-        /> */}
     </>
     );
 }
