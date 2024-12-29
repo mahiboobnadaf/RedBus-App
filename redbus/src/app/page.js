@@ -7,9 +7,11 @@ import Offers from "./components/Offers";
 export default function Home() {
   return (
     <>
-      {/* <Header /> */}
-      <Mainbody />
-      <Offers />
+      <div className="w-full flex flex-col items-center">
+        <Mainbody />
+        {/* <Offers /> */}
+    </div>
+
     </>
   );
 }

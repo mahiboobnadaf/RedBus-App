@@ -30,8 +30,8 @@ export default function LocationInput() {
         router.push(`/buses?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&date=${encodeURIComponent(date)}`);
     };
 
-    return (
-        <div className="flex items-center justify-center h-[95%]">
+    return <>
+        <div className="flex items-center justify-center h-[85%]">
             <form 
                 onSubmit={handleSubmit} 
                 className="text-red-950 p-10 bg-opacity-40 rounded-2xl flex flex-wrap gap-2"
@@ -97,5 +97,6 @@ export default function LocationInput() {
                 </div>
             </form>
         </div>
-    );
+    </>
+
 }

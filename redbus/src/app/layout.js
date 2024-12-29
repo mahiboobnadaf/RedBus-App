@@ -5,6 +5,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "./components/Header";
 import Login from "./(auth)/login/page";
+import Mainbody from "./components/Mainbody";
+import LocationInput from "./components/Location_input";
 
 
 const geistSans = localFont({
