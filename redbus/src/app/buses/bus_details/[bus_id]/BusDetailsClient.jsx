@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 export default function BusDetailsClient({ busDetails, from, to, date }) {
     const { id, name, arrival, departure, availability, price } = busDetails;
-    const totalSeats = 48; // Total seats on the bus
+    const totalSeats = 48; 
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [myBooking, setMyBooking] = useState([]);
     const [isBookingSuccessful, setIsBookingSuccessful] = useState(false); 
