@@ -1,4 +1,4 @@
-**RedBus-App**
+# **RedBus-App**
 
 RedBus-App is a user-friendly platform for booking bus tickets, exploring routes, and managing travel plans seamlessly. Built with a focus on simplicity and efficiency, it provides a smooth booking experience for travelers.
 
