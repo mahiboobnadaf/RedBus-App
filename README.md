@@ -2,7 +2,7 @@
 
 RedBus-App is a user-friendly platform for booking bus tickets, exploring routes, and managing travel plans seamlessly. Built with a focus on simplicity and efficiency, it provides a smooth booking experience for travelers.
 
-**Features**
+***Features***
 
 Search Buses: Find buses based on origin, destination, and travel dates.
 
@@ -12,7 +12,7 @@ Booking History: View and manage all your past bookings in one place.
 
 Real-Time Updates: Receive live updates on bus schedules and delays.
 
-**Installation**
+***Installation***
 
 Clone the repository:
 
@@ -22,7 +22,7 @@ Navigate to the project directory:
 
 cd RedBus-App
 
-**Install dependencies:**
+***Install dependencies:***
 
 npm install
 
@@ -30,7 +30,7 @@ Start the development server:
 
 npm run dev
 
-**Tech Stack**
+***Tech Stack***
 
 Frontend: React, Tailwind CSS
 
@@ -40,7 +40,7 @@ Database: MySQL
 
 APIs: RESTful APIs for seamless integration
 
-**Usage**
+***Usage***
 
 Open the app in your browser:
 
@@ -48,7 +48,7 @@ http://localhost:3000
 
 Search for buses, select your seat, and complete the booking process.
 
-**Contributing**
+***Contributing***
 
 Contributions are welcome! Please follow these steps:
 
