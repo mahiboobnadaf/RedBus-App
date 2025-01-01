@@ -18,6 +18,7 @@ export default function BusDetailsClient({ busDetails, from, to, date }) {
         }
 
         // Generate seat structure with availability
+        
         return Array.from({ length: totalSeats }, (_, index) => ({
             id: index + 1,
             status: index < availability ? "available" : "occupied",

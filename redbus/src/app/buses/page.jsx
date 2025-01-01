@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { busData } from "./busData";
 import { useRouter } from "next/navigation";
 
-
+//buses
 export default function BusesPage() {
     const searchParams = useSearchParams();
     const from = searchParams.get("from");
