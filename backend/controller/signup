@@ -1,4 +1,16 @@
 const {connection} = require('../config/dbConfig')
+const express = require('express');
+const app = express();
+// console.log(connection + "**#")
 
-console.log(connection)
+let user_register = (req,res)=>{
+    const {name,mobile_no,address,password} = req.body;
+    console.log(name,mobile_no,address,password);
+    let signupQuery = `INSERT INTO USERS_TABLE (user_name,mobile_no,password,address) VALUES (?,?,?,?) `;
+    connection.query(signupQuery, [name,mobile_no,password ,  address],(err, result, fields)=> {
+              if (err) throw err;
+              console.log(result);
+            });
+}
 
+module.exports={user_register}

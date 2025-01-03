@@ -14,9 +14,13 @@ let connected = connection.connect((err)=> {
     console.log("Database Connected!");
 })
 
+// for(const key in connection){
+//   console.log(key)
+// }
 
-module.exports = {connection}
+// console.log(connection);
 
+module.exports = {connection};
 
 
 // con.connect((err)=>{

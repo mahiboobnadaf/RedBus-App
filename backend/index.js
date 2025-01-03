@@ -18,9 +18,9 @@ app.get('/',(req,res)=>{
 
 // routing
 
-// const loginController = require("./controller/signup/login");
+const signUp = require('./controller/signup');
 
-// app.use("/v1", loginController.login);
+app.post("/signup", signUp.user_register);
 
 app.listen(3003,()=>{
     console.log("Server is running at port: 3003")
