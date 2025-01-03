@@ -1,16 +1,23 @@
 var mysql = require('mysql');
 
-var con = mysql.createConnection({
+let connection = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "mahiboob@123",
   database:"RedBus_App"
 });
 
-con.connect((err)=> {
-  if (err) throw err;
-  console.log("Database Connected!");
-});
+// console.log(connection);
+
+let connected = connection.connect((err)=> {
+    if (err) throw err;
+    console.log("Database Connected!");
+})
+
+
+module.exports = {connection}
+
+
 
 // con.connect((err)=>{
 //     if (err) throw err;
@@ -21,3 +28,4 @@ con.connect((err)=> {
 //       console.log(result);
 //     });
 //   });
+

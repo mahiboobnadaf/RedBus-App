@@ -1,5 +1,5 @@
 const express = require("express");
-const db = require("./config/dbConfig");
+const {connection} = require("./config/dbConfig");
 const app = express();
 var cors = require('cors')
  
@@ -11,7 +11,9 @@ app.use(express.urlencoded({ extended: true }));
 
 
 app.get('/',(req,res)=>{
-    res.send("Heloo world")
+    // console.log(connection);
+    
+    res.send("Heloo world" )
 })
 
 // routing
