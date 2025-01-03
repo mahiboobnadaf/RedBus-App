@@ -4,13 +4,18 @@ const app = express();
 // console.log(connection + "**#")
 
 let user_register = (req,res)=>{
-    const {name,mobile_no,address,password} = req.body;
-    console.log(name,mobile_no,address,password);
-    let signupQuery = `INSERT INTO USERS_TABLE (user_name,mobile_no,password,address) VALUES (?,?,?,?) `;
-    connection.query(signupQuery, [name,mobile_no,password ,  address],(err, result, fields)=> {
-              if (err) throw err;
-              console.log(result);
-            });
-}
+        const {name,mobile_no,address,password} = req.body;
+        // console.log(name,mobile_no,address,password);
+        let signupQuery = `INSERT INTO USERS_TABLE (user_name,mobile_no,password,address) VALUES (?,?,?,?) `;
+        connection.query(signupQuery, [name,mobile_no,password ,  address],(err, result, fields)=> {
+                  if (err){
+                    console.error(err.sqlMessage || err) ;
+                    return res.end("Error Occured while adding")
+                  } 
+                //   console.log(result);
+                  res.send("user added")
+                });
+} 
+    
 
 module.exports={user_register}
