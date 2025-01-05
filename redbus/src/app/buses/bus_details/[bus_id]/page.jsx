@@ -5,7 +5,7 @@ import { busData } from "../../busData";
 import BusDetailsClient from "./BusDetailsClient";
 
 export default function BusDetails({ params }) {
-    const { bus_id } = params;
+    const  {bus_id}  = params;
     const searchParams = useSearchParams();
     const from = searchParams.get("from");
     const to = searchParams.get("to");
