@@ -24,7 +24,7 @@ app.post("/signup", signUp.user_register);
 
 //Login 
 const logIn = require('./controller/login');
-app.get("/login",logIn.login);
+app.post("/login",logIn.login);
 
 
 
