@@ -19,7 +19,7 @@ app.get('/',(req,res)=>{
 // routing
 
 // Sign Up - User registration
-const signUp = require('./controller/signup');
+const signUp = require('./controller/signup.js');
 app.post("/signup", signUp.user_register);
 
 //Login 
