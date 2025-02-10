@@ -4,51 +4,57 @@ import { useState } from "react"
 import { users } from "../users"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-
+import axios from "axios"
 export default function SignUp() {
-    let [user, setUser] = useState("");
-    let [mobile, setMobile] = useState("");
-    let [address, setAddress] = useState("");
-    let [password, setPassword] = useState("");
+    // let [user, setUser] = useState("");
+    // let [mobile, setMobile] = useState("");
+    // let [address, setAddress] = useState("");
+    // let [password, setPassword] = useState("");
     let [error, setError] = useState("");
     let [success, setSuccess] = useState("");
 
+
+    const [users,setUsers] = useState({name :"" , mobile : "" , address :"" , password : "" })
+
     const router = useRouter();
 
-    const verify = () => {
-        let existingUser = users.find((item) => item.mobile === Number(mobile));
+    // const verify = () => {
+    //     let existingUser = users.find((item) => item.mobile === Number(mobile));
 
-        if (existingUser) {
-            setError("User Already Exists. Please Login.");
-            setSuccess("");
-            return false;
-        }
-        user = user.trim();
-        address = address.trim();
-        if (!/^\d{10}$/.test(mobile)) {
-            setError("Mobile number must be 10 digits.");
-            return false;
-        }
-        if (password.length < 6) {
-            setError("Password must be at least 6 characters long.");
-            return false;
-        }
-        setError("");
-        return true;
-    };
+    //     if (existingUser) {
+    //         setError("User Already Exists. Please Login.");
+    //         setSuccess("");
+    //         return false;
+    //     }
+    //     user = user.trim();
+    //     address = address.trim();
+    //     if (!/^\d{10}$/.test(mobile)) {
+    //         setError("Mobile number must be 10 digits.");
+    //         return false;
+    //     }
+    //     if (password.length < 6) {
+    //         setError("Password must be at least 6 characters long.");
+    //         return false;
+    //     }
+    //     setError("");
+    //     return true;
+    // };
 
+    console.log(users);
+    
+    const handleChange = (e)=>{
+
+        let key =  [e.target.name]
+        let value = e.target.value
+
+        setUsers({...users , [key] : value })
+
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (verify()) {
-            users.push({
-                id:users.length+1,
-                name: user,
-                mobile: Number(mobile),
-                address: address,
-                password: password,
-            });
+        axios.post("http://localhost:3003/signup",users)
             // console.log(users);
-            setUser("");
+            // setUser("");
             setMobile("");
             setAddress("");
             setPassword("");
@@ -60,7 +66,7 @@ export default function SignUp() {
             // console.log(window.localStorage.getItem('id') + "^^")
 
             router.push("/login");
-        }
+        
     };
 
     return (
@@ -85,8 +91,8 @@ export default function SignUp() {
                                 name="name"
                                 className="border w-full p-2 rounded-xl text-black"
                                 placeholder="Enter Full Name"
-                                value={user}
-                                onChange={(e) => setUser(e.target.value)}
+                                // value={users.name}
+                                onChange={handleChange}
                                 required
                             />
                         </div>
@@ -98,11 +104,11 @@ export default function SignUp() {
                                 type="text"
                                 pattern="\d{10,10}"
                                 id="mobile"
-                                name="mobile Number"
+                                name="mobile_no"
                                 className="border w-full p-2 rounded-xl text-black"
                                 placeholder="Enter Mobile no."
-                                value={mobile}
-                                onChange={(e) => setMobile(e.target.value)}
+                                // value={users.mobile}
+                                onChange={handleChange}
                                 required
                             />
                         </div>
@@ -116,8 +122,8 @@ export default function SignUp() {
                                 name="address"
                                 className="border w-full p-2 rounded-xl text-black"
                                 placeholder="Enter Address"
-                                value={address}
-                                onChange={(e) => setAddress(e.target.value)}
+                                value={users.address}
+                                onChange={handleChange}
                                 required
                             />
                         </div>
@@ -131,8 +137,8 @@ export default function SignUp() {
                                 name="password"
                                 className="border w-full p-2 rounded-xl text-black"
                                 placeholder="Set Password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                value={users.password}
+                                onChange={handleChange}
                                 required
                             />
                         </div>
