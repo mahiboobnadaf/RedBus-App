@@ -55,10 +55,10 @@ export default function SignUp() {
         axios.post("http://localhost:3003/signup",users)
             // console.log(users);
             // setUser("");
-            setMobile("");
-            setAddress("");
-            setPassword("");
-            console.log(users.forEach((item)=> console.log(item.id) ))
+            // setMobile("");
+            // setAddress("");
+            // setPassword("");
+            // console.log(users.forEach((item)=> console.log(item.id) ))
             console.log("Successfully added user");
             setSuccess("Added new user. Please Login.");
 

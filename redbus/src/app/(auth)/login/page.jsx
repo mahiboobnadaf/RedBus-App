@@ -13,9 +13,7 @@ export default function Login() {
     const handleLogin = (e) => {
         e.preventDefault();
 
-        const existingUser = users.find(
-            (user) => user.mobile === Number(mobile) && user.password === password
-        );
+        const existingUser = users.find((user) => user.mobile === Number(mobile) && user.password === password);
 
         if (!existingUser) {
             setError("Invalid mobile number or password.");
